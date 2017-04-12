@@ -1,0 +1,11 @@
+{
+  "name": "neighborhood-map",
+  "version": "1.0.0",
+  "description": "Web app to explore places in your neighborhood  ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dmitry Shatalov",
+  "license": "ISC"
+}

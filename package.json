@@ -7,5 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dmitry Shatalov",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "gulp": "^3.9.1",
+    "jquery": "^3.2.1",
+    "knockout": "^3.4.2"
+  }
 }

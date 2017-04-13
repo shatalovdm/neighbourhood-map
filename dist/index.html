@@ -7,22 +7,25 @@
     <meta name="author" content="Dmitry Shatalov">
 	<title>Neighbourhood Map</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/style.css" rel="stylesheet" media="screen">
 </head>
 <body>
-	<header>
-		<nav class="navbar navbar-default navbar-static-top">
-  			<div class="container">
-    ...
-  			</div>
-		</nav>
-	</header>
-	<main>
-		
-	</main>
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="navbar-inner">
+	        <ul class="nav pull-left">
+    			<a class="toggle-menu navbar-text"><span class="glyphicon glyphicon-menu-right"></span></a>
+	        </ul>
+	        <ul class="nav nav-center">
+	        	<p class="navbar-text">Neighbourhood Map</p>
+	        </ul>
+	    </div>
+	</nav>
+	<div id="map"></div>
 	<footer>
 		
 	</footer>
-	<script async type="text/javascript" src="js/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script async type="text/javascript" src="js/knockout-latest.js"></script>
+	<script async type="text/javascript" src="js/map.js"></script>
 </body>
 </html>

@@ -10,22 +10,58 @@
 	<link href="css/style.css" rel="stylesheet" media="screen">
 </head>
 <body>
-	<nav class="navbar navbar-default navbar-static-top">
-		<div class="navbar-inner">
-	        <ul class="nav pull-left">
-    			<a class="toggle-menu navbar-text"><span class="glyphicon glyphicon-menu-right"></span></a>
-	        </ul>
-	        <ul class="nav nav-center">
-	        	<p class="navbar-text">Neighbourhood Map</p>
-	        </ul>
-	    </div>
-	</nav>
-	<div id="map"></div>
+	<header>		
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="navbar-inner">
+		        <ul class="nav pull-left">
+	    			<a class="toggle-menu navbar-text"><span class="glyphicon glyphicon-menu-right"></span></a>
+		        </ul>
+		        <ul class="nav nav-center">
+		        	<p class="navbar-text">Neighbourhood Map</p>
+		        </ul>
+		    </div>
+		</nav>
+	</header>
+	<main>
+		<div class="content container-fluid">
+			<div class="row">
+				<div class="content col-sm-3">
+					<form class="form-horizontal">
+						<input type="text" class="form-control" placeholder="Search for a place...">
+					</form>
+					<table class="table table-condensed">
+						<caption>Results</caption>
+						<tbody>
+							<tr>
+								<td>
+									
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="content map col-sm-9">
+					<div id="map"></div>
+				</div>
+			</div>
+		</div>
+	</main>
 	<footer>
 		
 	</footer>
+	<script>
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+			center: {lat: 41.8853195, lng: -87.6285088},
+			scrollwheel: false,
+			zoom: 15
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-Xrr0-0B6jLNfz2eOWCUH_Avt4jXvHBs&v=3&callback=initMap"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script async type="text/javascript" src="js/knockout-latest.js"></script>
-	<script async type="text/javascript" src="js/map.js"></script>
+	<script async type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

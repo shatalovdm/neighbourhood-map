@@ -20,8 +20,18 @@ main {
 	height: 100%;
 }
 
+.pre-scrollable {
+    max-height: 1000px;
+    overflow-y: scroll;
+}
+
+
 .row {
 	height: 100%;
+}
+
+p {
+
 }
 
 body, html {
@@ -31,8 +41,22 @@ body, html {
 }
 .map {
 	padding-right: 0;	
+	padding-left: 0;
 }
+
 #map {
 	height: 100%;
 	width: 100%;
+}
+
+.opentable-link {
+	padding: 5px 50px;
+}
+
+.btn-primary {
+	width: 100%;
+}
+
+.address {
+	padding: 0px 15px;
 }

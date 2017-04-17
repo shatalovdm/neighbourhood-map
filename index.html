@@ -25,17 +25,41 @@
 	<main>
 		<div class="content container-fluid">
 			<div class="row">
-				<div class="content col-sm-3">
+				<div class="content col-sm-3 pre-scrollable">
 					<form class="form-horizontal">
-						<input type="text" class="form-control" placeholder="Search for a place...">
+						<input type="text" data-bind="textInput: filterKeyword" class="form-control" placeholder="Filter by name">
 					</form>
 					<table class="table table-condensed">
 						<caption>Results</caption>
-						<tbody data-bind="foreach: restaurants">
+						<tbody data-bind="foreach: restaurants, foreach: filterRestaurants">
 							<tr>
 								<td>
-									
-									<p data-bind="text: name"></p>
+									<div class="container-fluid">
+										<div class="description row">
+											<div class="col-xs-8">
+												<div class="row">
+													<div class="col-xs-8">
+														<h4 data-bind="text: name"></h4>
+													</div>
+													<div class="col-xs-4">
+														<h4 data-bind="text: price"></h4>
+													</div>
+												</div>
+												<div class="address row">
+													<p data-bind="text: address"></p>
+												</div>
+												<div class="address row">
+													 Phone: <span data-bind="text: phone"></span>
+												</div>
+											</div>
+											<div class="col-xs-4">
+												<img data-bind="attr: { 'src': image}" alt="restaurant image" class="img-responsive img-rounded">
+											</div>
+										</div>
+										<div class="row opentable-link">
+											<a class="btn btn-primary" data-bind="attr: { 'href': link}" role="button">Reserve a table</a>
+										</div>
+									</div>
 								</td>
 							</tr>
 						</tbody>

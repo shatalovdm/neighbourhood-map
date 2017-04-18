@@ -1,3 +1,6 @@
+/*Neighborhood Map
+Created by Dmitry Shatalov*/
+
 .nav.nav-center {
 	display: inline-block;
     left: 0;
@@ -26,13 +29,29 @@ main {
 }
 
 
-.row {
-	height: 100%;
+.results {
+	height: calc(100% - 50px);
 }
 
-p {
-
+.bar {
+	height: 50px;
+	padding-top: 10px;
+	border-bottom: 1px solid #e7e7e7;
 }
+
+.form-group {
+	margin-right: 10px;
+}
+
+label {
+	margin-right: 5px;
+}
+
+.form-control {
+	height: 30px;
+}
+
+
 
 body, html {
     height: 100%;
@@ -59,4 +78,7 @@ body, html {
 
 .address {
 	padding: 0px 15px;
+}
+.restaurant-list {
+	display: none;
 }

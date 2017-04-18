@@ -13,9 +13,6 @@
 	<header>		
 		<nav class="navbar navbar-default navbar-static-top">
 			<div class="navbar-inner">
-		        <ul class="nav pull-left">
-	    			<a class="toggle-menu navbar-text"><span class="glyphicon glyphicon-menu-right"></span></a>
-		        </ul>
 		        <ul class="nav nav-center">
 		        	<p class="navbar-text">Neighbourhood Map</p>
 		        </ul>
@@ -24,14 +21,44 @@
 	</header>
 	<main>
 		<div class="content container-fluid">
-			<div class="row">
-				<div class="content col-sm-3 pre-scrollable">
-					<form class="form-horizontal">
-						<input type="text" data-bind="textInput: filterKeyword" class="form-control" placeholder="Filter by name">
+			<div class="bar text-center row">
+				<div class="col-md-3">
+					<form class="search form-inline" data-bind="submit: searchZip">
+						<div class="form-group">
+							<label for="zipSearch">Zip</label>
+							<input type="text" class="form-control" id="zipSearch" data-bind='value: zipSearch, valueUpdate: "afterkeydown"' placeholder="Enter a zip code">
+						</div>
+						<button type="submit" class="btn btn-default">Search</button>
 					</form>
+				</div>
+				<div class="col-md-9">
+					<form class="form-inline">
+						<div class="form-group">
+							<label for="nameInput">Name</label>
+							<input type="text" class="form-control" id="nameInput" data-bind="textInput: filterName" placeholder="Filter by name">
+						</div>
+						<div class="form-group">
+							<label for="addressInput">Address</label>
+							<input type="text" class="form-control" id="addressInput" data-bind="textInput: filterAddress" placeholder="Filter by address">
+						</div>
+						<div class="form-group">
+							<label for="priceInput">Price</label>
+							<select class="form-control" data-bind="textInput: filterPrice" id="priceInput">
+								<option>Any</option>
+								<option>$</option>
+								<option>$$</option>
+								<option>$$$</option>
+								<option>$$$$</option>
+							</select>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="results row">
+				<div class="content col-sm-3 pre-scrollable">
 					<table class="table table-condensed">
 						<caption>Results</caption>
-						<tbody data-bind="foreach: restaurants, foreach: filterRestaurants">
+						<tbody class="restaurant-list" data-bind="foreach: restaurants, foreach: filterRestaurants">
 							<tr>
 								<td>
 									<div class="container-fluid">
@@ -66,7 +93,7 @@
 					</table>
 				</div>
 				<div class="content map col-sm-9">
-					<div id="map"></div>
+					<div id="map" data-bind="map: { latitude: latitude, longitude: longitude }"></div>
 				</div>
 			</div>
 		</div>
@@ -74,26 +101,7 @@
 	<footer>
 		
 	</footer>
-	<script>
-        var geocoder; 
-		var map; 
-		function initMap() {
-			geocoder = new google.maps.Geocoder();
-			geocoder.geocode( { 'address': '60613+usa' }, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-				//Got result, center the map and put it out there
-					var map = new google.maps.Map(document.getElementById('map'), {
-					center: results[0].geometry.location,
-					scrollwheel: false,
-					zoom: 15
-				});
-				} else {
-					alert("Geocode was not successful for the following reason: " + status);
-				}
-			});
-		}
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-Xrr0-0B6jLNfz2eOWCUH_Avt4jXvHBs&v=3&callback=initMap"></script>
+	
 	<script async type="text/javascript" src="js/knockout-latest.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script async type="text/javascript" src="js/app.js"></script>

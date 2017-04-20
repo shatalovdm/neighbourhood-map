@@ -47,10 +47,16 @@ gulp.task('minify-html', function() {
     	.pipe(gulp.dest('dist'));
 });
 
+gulp.task('publish-images', function() {
+    return gulp.src('src/img/*')
+        .pipe(gulp.dest('dist/img'))
+});
+
+
 gulp.task('watch', function() {
     gulp.watch(config.htmlSource, ['minify-html'])
     gulp.watch(config.cssSource, ['minify-css'])
     gulp.watch(config.jsSource, ['minify-js'])
 });
 
-gulp.task('default', [ 'minify-html', 'minify-css', 'minify-js', 'publish-frameworks']);
+gulp.task('default', [ 'minify-html', 'minify-css', 'minify-js', 'publish-frameworks', 'publish-images']);

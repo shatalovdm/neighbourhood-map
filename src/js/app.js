@@ -38,7 +38,6 @@ var RestaurantsViewModel = function() {
     		$(".search").addClass("has-error");
     	} else {
     		self.restaurants().length = 0;
-    		$("caption").html("Restaurants provided by OpenTable");
     		getMapData();
     	}
 	}

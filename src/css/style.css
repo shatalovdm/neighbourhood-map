@@ -52,11 +52,19 @@ main {
 }
 
 label {
-	margin-right: 5px;
+	margin-right: 10px;
 }
 
-.form-control {
+.form-control, .btn {
 	height: 30px;
+}
+
+.btn {
+	padding-top: 3px;
+}
+
+#zipSearch {
+	width: 100px;
 }
 
 body, html {
@@ -76,7 +84,9 @@ body, html {
 }
 
 .opentable-link {
-	padding: 5px 50px;
+	padding-top: 5px;
+	padding-left: 15px;
+	width: 70%;
 }
 
 .btn-primary {
@@ -88,4 +98,36 @@ body, html {
 }
 .restaurant-list {
 	display: none;
+}
+
+@media only screen and (max-width: 964px) {
+	.bar {
+		font-size: 12px;
+	}
+
+	#zipSearch {
+		width: 60px;
+	}
+
+	#nameInput, #zipSearch, #addressInput, #priceInput {
+		font-size: 12px;
+	}
+
+	.btn-default, .btn-primary {
+		font-size: 12px;
+		padding-top: 4px;	
+	}
+	span {
+		font-size: 12px;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.bar {
+		height: 350px;
+	}
+	#zipSearch {
+		width: 100%;
+		margin-bottom: 15px; 
+	}
 }

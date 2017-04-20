@@ -6,7 +6,7 @@
 var map;
 var geocoder;
 var markers = [];
-var active = false;
+var isHighlighted = false;
 
 // Get map from Google Maps API centered by 'zip' code
 function getMapData() {
@@ -37,9 +37,13 @@ function populateMap (restaurants) {
 	var bounds = new google.maps.LatLngBounds();
 	var location;
 	var restaurant;
+	var previousMarker;
 
 	// If the are any markers already, remove them from the map
 	if (markers) { removeMarkers(); }
+
+	// No markers are highlighted when they are created
+	isHighlighted = false;
 
 	if (restaurants.length > 0) {
 		for (var i = 0; i < restaurants.length; i++) {
@@ -52,12 +56,14 @@ function populateMap (restaurants) {
 			    title: restaurant.name,
 			    id: restaurant.id
 	        });
-
 	        markers.push(marker);
 
 	        marker.addListener('click', function() {
+	        	// If there is already highlighted marker, revert it first
+	        	if (isHighlighted) { revertMarker(previousMarker); }
 	        	highlightMarker(this);
-	        	active = true;
+	        	previousMarker = this;
+	        	isHighlighted = true;
 	            populateInfoWindow(this, restaurant, largeInfowindow);
 	        });
 
@@ -68,7 +74,6 @@ function populateMap (restaurants) {
 	}
 }
 
-// 
 function highlightMarker(marker) {
 	var image = {
 	  url: 'img/marker.png',
@@ -97,7 +102,8 @@ function populateInfoWindow(marker, restaurant, infowindow) {
             revertMarker(marker);
         });
         google.maps.event.addListener(map, "click", function(event) {
-            revertMarker(marker);	
+            revertMarker(marker);
+            isHighlighted = false;
 		    infowindow.setMarker = null;
 		    infowindow.close();
 		});

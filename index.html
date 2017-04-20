@@ -11,10 +11,10 @@
 </head>
 <body>
 	<header>		
-		<nav class="navbar navbar-default navbar-static-top">
+		<nav class="navbar navbar-static-top">
 			<div class="navbar-inner">
 		        <ul class="nav nav-center">
-		        	<p class="navbar-text">Neighbourhood Map</p>
+		        	<h4 class="navbar-text text-uppercase">Neighborhood Map</h4>
 		        </ul>
 		    </div>
 		</nav>
@@ -84,7 +84,7 @@
 											</div>
 										</div>
 										<div class="row opentable-link">
-											<a class="btn btn-primary" data-bind="attr: { 'href': link}" role="button">Reserve a table</a>
+											<a class="btn reserve" data-bind="attr: { 'href': link}" role="button">Reserve a table</a>
 										</div>
 									</div>
 								</td>
@@ -104,6 +104,7 @@
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script async type="text/javascript" src="js/knockout-latest.js"></script>
+	<script async type="text/javascript" src="js/map.js"></script>
 	<script async type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

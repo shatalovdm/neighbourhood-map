@@ -1,38 +1,56 @@
 'use strict';
 
 var gulp = require('gulp');
+var cleanCSS = require('gulp-clean-css');
+var sourcemaps = require('gulp-sourcemaps');
+var rename = require('gulp-rename');
+var minify = require('gulp-minify');
+var htmlmin = require('gulp-htmlmin');
 
 var config = {
     htmlSource: '*.html',
-    cssSource: 'src/css/style.css',
+    cssSource: 'src/css/*.css',
     jsSource: 'src/js/*.js'
 };
+gulp.task('publish-frameworks', function() {
+	return gulp.src(['node_modules/knockout/build/output/knockout-latest.js', 'node_modules/bootstrap/dist/css/bootstrap.min.css.map'])
+        .pipe(gulp.dest('dist/lib'));
+});
 
-
-gulp.task('publish-js', function() {
-	return gulp.src(['node_modules/jquery/dist/jquery.min.js', 'node_modules/knockout/build/output/knockout-latest.js',	config.jsSource])
+gulp.task('minify-js', function() {
+	return gulp.src(config.jsSource)
+		.pipe(minify({
+            ext:{
+                min:'.min.js'
+            },
+            noSource: true
+        }))
 		.pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('publish-css', function() {
-	return gulp.src(['node_modules/bootstrap/dist/css/bootstrap.min.css', config.cssSource])
+gulp.task('minify-css', function() {
+	return gulp.src(config.cssSource)
+		.pipe(sourcemaps.init())
+        .pipe(cleanCSS())
+        .pipe(sourcemaps.write({addComment: false}))
+        .pipe(rename(function (path) {
+            if(path.extname === '.css') {
+                path.basename += '.min';
+            }
+        }))
 		.pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('publish-fonts', function() {
-	return gulp.src('node_modules/bootstrap/dist/fonts/*.*')
-		.pipe(gulp.dest('dist/fonts'));
-});
-
-gulp.task('publish-html', function() {
+gulp.task('minify-html', function() {
 	return gulp.src(config.htmlSource)
-		.pipe(gulp.dest('dist/'));
+		.pipe(htmlmin({collapseWhitespace: true}))
+    	.pipe(gulp.dest('dist'));
 });
 
 gulp.task('watch', function() {
-    gulp.watch(config.htmlSource, ['publish-html'])
-    gulp.watch(config.cssSource, ['publish-css'])
-    gulp.watch(config.jsSource, ['publish-js'])
+    gulp.watch(config.htmlSource, ['minify-html'])
+    gulp.watch(config.cssSource, ['minify-css'])
+    gulp.watch(config.jsSource, ['minify-js'])
 });
 
-gulp.task('default', [ 'publish-js', 'publish-css', 'publish-html', 'publish-fonts']);
+gulp.task('default', [ 'minify-html', 'minify-css', 'minify-js', 'publish-frameworks']);

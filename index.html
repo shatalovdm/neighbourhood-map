@@ -1,3 +1,4 @@
+<!-- Neighborhood Map. Created by Dmitry Shatalov -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +57,10 @@
 				</div>
 			</div>
 			<div class="results row">
-				<div class="content col-sm-4 pre-scrollable">
+				<div class="content map col-sm-8 col-sm-push-4">
+					<div id="map" data-bind="map: { latitude: latitude, longitude: longitude }"></div>
+				</div>
+				<div class="content col-sm-4 col-sm-pull-8 pre-scrollable">
 					<table class="table table-condensed">
 						<caption>Restaurant data is provided by OpenTable</caption>
 						<tbody class="restaurant-list" data-bind="foreach: restaurants, foreach: filterRestaurants">
@@ -92,9 +96,6 @@
 							</tr>
 						</tbody>
 					</table>
-				</div>
-				<div class="content map col-sm-8">
-					<div id="map" data-bind="map: { latitude: latitude, longitude: longitude }"></div>
 				</div>
 			</div>
 		</div>

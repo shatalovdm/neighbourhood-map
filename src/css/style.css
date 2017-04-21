@@ -55,6 +55,10 @@ label {
 	margin-right: 10px;
 }
 
+tr {
+	width: 600px;
+}
+
 .form-control, .btn {
 	height: 30px;
 }

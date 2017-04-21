@@ -1,4 +1,8 @@
-# Neighbourhood Map
+# Neighborhood Map
+
+This web app helps user find restaurants by zip code. User can filter results by name, address, and price and reserve a table by following a link to OpenTable website.
+
+There are two APIs used in this project: [Google Maps API](https://developers.google.com/maps/) and an unofficial [OpenTable API](https://github.com/sosedoff/opentable). Restaurant data is provided by OpenTable. Search and filter functionality is implemented by using Knockout.js library. 
 
 ## Getting started
 
@@ -20,6 +24,10 @@ $ npm install
 $ gulp
 ```
 A working post-task runner code will be available in 'dist' folder.
+
+### Demo
+
+The demo version is available for use [here](http://dshatalov.com/neighbourhood-map/dist/).
 
 ## License
 

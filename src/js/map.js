@@ -94,7 +94,7 @@ function populateInfoWindow(marker, restaurant, infowindow) {
 	if (infowindow.marker != marker) {
 		infowindow.marker = marker;
 		infowindow.setContent('<div>' + marker.title + '</div>' + '<div>' + restaurant.address + '</div>' + 
-			'<div>' + '<a class="btn btn-primary" href="restaurant.link" role="button">Reserve a table</a>' + '</div>');
+			'<div style="margin-top:5px">' + '<a class="btn btn-primary" href="restaurant.link" role="button">Reserve </a>' + '</div>');
 		infowindow.open(map, marker);
 		// Clear marker property and revert the marker when closed
 		infowindow.addListener('closeclick',function(){

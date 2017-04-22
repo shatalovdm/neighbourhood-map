@@ -77,6 +77,10 @@ body, html {
     padding: 0;
     font-family: helvetica neue,arial,helvetica,freesans,liberation sans,numbus sans l,sans-serif;
 }
+
+.description {
+	cursor: pointer;
+}
 .map {
 	padding-right: 0;	
 	padding-left: 0;
@@ -99,9 +103,6 @@ body, html {
 
 .address {
 	padding: 0px 15px;
-}
-.restaurant-list {
-	display: none;
 }
 
 @media only screen and (max-width: 964px) {

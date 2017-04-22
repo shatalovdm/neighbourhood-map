@@ -23,7 +23,14 @@ $ npm install
 ```
 $ gulp
 ```
-A working post-task runner code will be available in 'dist' folder.
+A working post-task runner code will be available in `dist` directory.
+
+4. Go to 'dist' directory and run Python HTTP server specifying the port number:
+```
+$ python -m SimpleHTTPServer 8080
+```
+
+5. Open `localhost:8080` in your browser. 
 
 ### Demo
 

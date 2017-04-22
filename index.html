@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Web App to explore your neighbourhood">
     <meta name="author" content="Dmitry Shatalov">
-	<title>Neighbourhood Map</title>
+	<title>Neighborhood Map</title>
 	<link href="lib/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="css/style.min.css" rel="stylesheet" media="screen">
 </head>
@@ -62,12 +62,12 @@
 				</div>
 				<div class="content col-sm-4 col-sm-pull-8 pre-scrollable">
 					<table class="table table-condensed">
-						<caption>Restaurant data is provided by OpenTable</caption>
-						<tbody class="restaurant-list" data-bind="foreach: restaurants, foreach: filterRestaurants">
+						<caption data-bind="text: message"></caption>
+						<tbody class="restaurant-list" data-bind="foreach: restaurants, foreach: filterRestaurants, visible: isVisible">
 							<tr>
 								<td>
 									<div class="container-fluid">
-										<div class="description row" data-bind="event: { mouseover: $parent.enableMarker, mouseout: $parent.disableMarker }">
+										<div class="description row" data-bind="event: { mouseout: $parent.disableMarker, click: $parent.enableMarker }">
 											<div class="col-xs-8">
 												<div class="row">
 													<div class="col-xs-8">
@@ -84,7 +84,7 @@
 													 <span>Phone: </span><span data-bind="text: phone"></span>
 												</div>
 												<div class="row opentable-link">
-													<a class="btn btn-primary reserve" data-bind="attr: { 'href': link}" role="button">Reserve</a>
+													<a class="btn btn-primary reserve" data-bind="attr: { 'href': link}" role="button"  target="_blank">Reserve</a>
 												</div>
 											</div>
 											<div class="col-xs-4">
@@ -105,8 +105,11 @@
 	</footer>
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script async type="text/javascript" src="lib/knockout-latest.js"></script>
-	<script async type="text/javascript" src="js/map.min.js"></script>
-	<script async type="text/javascript" src="js/app.min.js"></script>
+	<script type="text/javascript" src="lib/knockout-latest.js"></script>
+	<script type="text/javascript" src="js/map.min.js"></script>
+	<script type="text/javascript" src="js/app.min.js"></script>
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-Xrr0-0B6jLNfz2eOWCUH_Avt4jXvHBs&callback=getMapData" onerror="googleError()">
+    </script>
 </body>
 </html>

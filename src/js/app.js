@@ -20,7 +20,9 @@ var Restaurant = function(id, name, address, lat, lng, phone, price, image, link
 	this.price = price;
 	this.image = image;
 	this.link = link;
-}
+	this.marker = '';
+	this.infowindow = new google.maps.InfoWindow();
+};
 
 var RestaurantsViewModel = function() {
 	var self = this;
@@ -31,42 +33,41 @@ var RestaurantsViewModel = function() {
 	self.filterAddress = ko.observable('');
 	self.filterPrice = ko.observable('Any');
 	self.zipSearch = ko.observable('60602');
+	self.isVisible = ko.observable(false);
+	self.message = ko.observable('Restaurant data is provided by OpenTable');
 
 	// Get estaurants accoring to the zip code 
 	self.searchZip = function() {
 		if (self.zipSearch().length != 5 || isNaN(self.zipSearch())) {
     		$(".search").addClass("has-error");
     	} else {
+    		changed = false;
+    		self.filterName('');
+    		self.filterAddress('');
+    		self.filterPrice('Any');
     		self.restaurants().length = 0;
     		getMapData();
     	}
-	}
+	};
 
 	// Highlight selected marker
 	self.enableMarker = function(restaurant) {
-		for (var i = 0; i < markers.length; i++) {
-			if (markers[i].id === restaurant.id) {
-				highlightMarker(markers[i]);
-				break;
-			}
-		}
-	}
+		displayMarker(restaurant);
+		return true;
+	};
 
 	// Revert marker to default styling
 	self.disableMarker = function(restaurant) {
-		for (var i = 0; i < markers.length; i++) {
-			if (markers[i].id === restaurant.id) {
-				revertMarker(markers[i]);
-				break;
-			}
+		if (isHighlighted) {
+			revertMarker(restaurant.marker, restaurant.infowindow);
 		}
-	}
+	};
 
 	// Filter restaurants by name, address, and price
   	self.filterRestaurants = ko.computed(function() {
         if (!self.filterName() && !self.filterAddress() && (self.filterPrice() == 'Any')) {
         	// Draw markers only when the result was filtered 
-        	if (changed) { populateMap(self.restaurants()); }
+        	if (changed) { hideMarkers(self.restaurants()); }
         	return self.restaurants();
         } else {
         	changed = true;
@@ -81,11 +82,11 @@ var RestaurantsViewModel = function() {
         		}
             	
             });
-            populateMap(filteredRestaurants);
+            hideMarkers(filteredRestaurants);
         	return filteredRestaurants;
         }
     });
-}
+};
 
 var restaurantsViewModel = new RestaurantsViewModel();
 
@@ -125,12 +126,13 @@ function getOpenTableData() {
 	    		// Populate the map with markers
 	    		populateMap(restaurantsViewModel.restaurants());
 				//Display the list of restaurants
-	    		$(".restaurant-list").css("display", "block");
+	    		restaurantsViewModel.isVisible(true);
 		    }
 		})
 		.fail(function() {
-	    	$("caption").html("Could not load the OpenTable data. Try again later.");
-	    })
+	    	restaurantsViewModel.message('Could load Restaurant data. Please try again later.')
+	    });
+
 	}
 }
 
